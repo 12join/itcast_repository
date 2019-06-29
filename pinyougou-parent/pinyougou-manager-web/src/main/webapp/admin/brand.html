@@ -62,7 +62,13 @@
     	
     	//新增
     	$scope.save=function(){
-    		   $http.post('../brand/save.do',$scope.entity).success(
+    		//定义一个变量
+    		var methodName='add';
+    		//判断是否有id
+    		if($scope.entity.id!=null){
+    			methodName='update';
+    		}
+    		   $http.post('../brand/'+methodName+'.do',$scope.entity).success(
     				   function(response) {
 						//判断是否成功
 						if(response.sccess){
@@ -73,6 +79,15 @@
     					   
 					}   
     		   );
+    	}
+    	
+    	//通过id查询
+    	$scope.findOne=function(id){
+    	    $http.get('../brand/findOne.do?id='+id).success(
+                    function(response){
+                        $scope.entity=response;
+                    }   
+            );
     	}
     	
     });
@@ -96,7 +111,7 @@
                             <div class="pull-left">
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
+                                        <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ng-click="entity={}"><i class="fa fa-file-o"></i> 新建</button>
                                         <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>           
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
@@ -129,7 +144,7 @@
 									      <td>{{entity.name}}</td>									     
 		                                  <td>{{entity.firstChar}}</td>		                                 
 		                                  <td class="text-center">                                           
-		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal"  >修改</button>                                           
+		                                 	  <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" ng-click="findOne(entity.id)" >修改</button>                                           
 		                                  </td>
 			                          </tr>
 			                      </tbody>

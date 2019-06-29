@@ -31,6 +31,7 @@ public class BrandController {
 		return brandService.findPage(page,size);
 	}
 	
+	//新增
 	@RequestMapping("/save")
 	public Result save(@RequestBody TbBrand tbBrand) {
 		
@@ -41,6 +42,24 @@ public class BrandController {
 			// TODO: handle exception
 			return new Result(false, "增加失败");
 		}
+	}
+	
+	//修改
+	@RequestMapping("/update")
+	public Result update(@RequestBody TbBrand tbBrand) {
+		
+		try {
+			brandService.update(tbBrand);
+			return new Result(true, "修改成功");
+		} catch (Exception e) {
+			// TODO: handle exception
+			return new Result(false, "修改失败");
+		}
+	}
+	
+	@RequestMapping("/findOne")
+	public TbBrand findOne(Long id) {
+		return brandService.findOne(id);
 	}
 
 }

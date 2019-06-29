@@ -38,5 +38,17 @@ public class BrandServiceImpl implements BrandService {
 		brandMapper.insert(tbBrand);
 		
 	}
+	
+	//查询对象
+	@Override
+	public TbBrand findOne(Long id) {
+		return brandMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public void update(TbBrand tbBrand) {
+		// TODO Auto-generated method stub
+		brandMapper.updateByPrimaryKey(tbBrand);
+	}
 
 }

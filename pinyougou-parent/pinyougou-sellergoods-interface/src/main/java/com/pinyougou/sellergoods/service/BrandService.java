@@ -17,4 +17,10 @@ public interface BrandService {
 	
 	//新增
 	public void save(TbBrand tbBrand);
+	
+	//根据id查询
+	public TbBrand findOne(Long id);
+	
+	//修改对象
+	public void update(TbBrand tbBrand);
 }
