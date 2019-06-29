@@ -23,12 +23,20 @@ public class BrandServiceImpl implements BrandService {
 		//调用dao层
 		return brandMapper.selectByExample(null);
 	}
-
+	
+	//分页查询
 	@Override
 	public PageResult findPage(int pageNum, int pageSize) {
 		PageHelper.startPage(pageNum, pageSize);
 		Page<TbBrand> page = (Page<TbBrand>) brandMapper.selectByExample(null);
 		return new PageResult(page.getTotal(),page.getResult());
+	}
+	
+	//保存
+	@Override
+	public void save(TbBrand tbBrand) {
+		brandMapper.insert(tbBrand);
+		
 	}
 
 }
