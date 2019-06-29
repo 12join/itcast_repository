@@ -90,6 +90,36 @@
             );
     	}
     	
+    	//定义一个id的集合
+    	$scope.selectIds=[];
+    	//定义删除方法 用户勾选复选框
+    	$scope.updateSelection=function($event,id){
+    		if($event.target.checked){
+    			$scope.selectIds.push(id);//添加id到集合中
+    		}else {
+    			var index=$scope.selectIds.indexOf(id);//查询到数组中id的值索引
+    			$scope.selectIds.splice(index,1);//参数1：移除的位置 参数2：移除的个数  
+			}
+    	}
+    	
+    	//定义删除方法
+        $scope.delete=function(){
+            if(confirm("确定删除选中的商品")){
+                 $http.post('../brand/delete.do?ids='+$scope.selectIds).success(
+                           function(response) {
+                            //判断是否成功
+                            if(response.sccess){
+                                $scope.reloadList();//重新加载
+                            }else {
+                            alert(response.message);
+                            }  
+                        }   
+                   );
+            }else {
+            	$scope.reloadList();//重新加载
+			}   
+        }
+    	
     });
     
     
@@ -112,7 +142,7 @@
                                 <div class="form-group form-inline">
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ng-click="entity={}"><i class="fa fa-file-o"></i> 新建</button>
-                                        <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>           
+                                        <button type="button" class="btn btn-default" title="删除" ng-click="delete()"><i class="fa fa-trash-o"></i> 删除</button>           
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
                                 </div>
@@ -139,7 +169,7 @@
 			                      </thead>
 			                      <tbody>
 			                          <tr ng-repeat="entity in list">
-			                              <td><input  type="checkbox" ></td>			                              
+			                              <td><input  type="checkbox" ng-click="updateSelection($event,entity.id)" ></td>			                              
 				                          <td>{{entity.id}}</td>
 									      <td>{{entity.name}}</td>									     
 		                                  <td>{{entity.firstChar}}</td>		                                 
@@ -149,7 +179,8 @@
 			                          </tr>
 			                      </tbody>
 			                  </table>
-			                  <!--数据列表/-->                        
+			                  <!--数据列表/-->  
+			                                     
 							  
 							  <!--引入分页条  -->
 							  <tm-pagination conf="paginationConf"></tm-pagination>
