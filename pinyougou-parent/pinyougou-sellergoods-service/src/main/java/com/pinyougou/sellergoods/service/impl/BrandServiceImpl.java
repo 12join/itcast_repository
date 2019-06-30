@@ -35,8 +35,7 @@ public class BrandServiceImpl implements BrandService {
 	}
 	
 	//保存
-	@Override
-	public void save(TbBrand tbBrand) {
+	public void add(TbBrand tbBrand) {
 		/*List<TbBrand> tbBrands = brandMapper.selectByExample(null);
 		for (TbBrand tbBrandName : tbBrands) {
 			if(tbBrandName.getName().equalsIgnoreCase(tbBrand.getName())){

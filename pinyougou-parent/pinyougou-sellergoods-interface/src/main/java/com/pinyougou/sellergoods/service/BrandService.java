@@ -16,7 +16,7 @@ public interface BrandService {
 	public PageResult findPage(int pageNum,int  pageSize);
 	
 	//新增
-	public void save(TbBrand tbBrand);
+	public void add(TbBrand tbBrand);
 	
 	//根据id查询
 	public TbBrand findOne(Long id);

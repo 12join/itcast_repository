@@ -32,11 +32,11 @@ public class BrandController {
 	}
 	
 	//新增
-	@RequestMapping("/save")
+	@RequestMapping("/add")
 	public Result save(@RequestBody TbBrand tbBrand) {
 		
 		try {
-			brandService.save(tbBrand);
+			brandService.add(tbBrand);
 			return new Result(true, "增加成功");
 		} catch (Exception e) {
 			// TODO: handle exception
