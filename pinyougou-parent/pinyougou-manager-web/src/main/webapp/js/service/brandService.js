@@ -10,7 +10,7 @@
     	}
     	//添加方法
     	this.add=function(entity){
-    		return $http.post('../brand/add.do',entity);
+    		return $http.post('../brand/save.do',entity);
     	}
     	//修改方法
     	this.update=function(entity){
