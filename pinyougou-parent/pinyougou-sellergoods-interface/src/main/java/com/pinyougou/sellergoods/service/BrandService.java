@@ -26,4 +26,7 @@ public interface BrandService {
 	
 	//删除对象
 	public void delete(Long[] ids);
+	
+	//条件分页查询 方法重载
+	public PageResult findPage(TbBrand tbBrand,int pageNum,int  pageSize);
 }

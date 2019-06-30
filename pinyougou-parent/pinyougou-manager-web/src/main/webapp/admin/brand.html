@@ -46,7 +46,7 @@
     	//定义刷新列表的方法
     	$scope.reloadList=function(){
     		//切换页码
-    		$scope.findPage($scope.paginationConf.currentPage,$scope.paginationConf.itemsPerPage);
+    		$scope.search($scope.paginationConf.currentPage,$scope.paginationConf.itemsPerPage);
     	}
     	
     	//切换页码的方法
@@ -120,6 +120,18 @@
 			}   
         }
     	
+    	//初始化参数
+    	$scope.searchEntity={};
+    	//定义查询的方法
+        $scope.search=function(page,rows){
+        	$http.post('../brand/search.do?page='+page+'&size='+rows,$scope.searchEntity).success(
+                    function(response){
+                        $scope.list=response.rows;
+                        $scope.paginationConf.totalItems=response.total;
+                    }   
+            );
+    	}
+    	
     });
     
     
@@ -149,7 +161,8 @@
                             </div>
                             <div class="box-tools pull-right">
                                 <div class="has-feedback">
-							                                         
+							              品牌名称:<input ng-model="searchEntity.name"> 品牌首字母:<input ng-model="searchEntity.firstChar">  
+                                      <button  class="btn btn-default" ng-click="reloadList()">查询</button>                              
                                 </div>
                             </div>
                             <!--工具栏/-->
