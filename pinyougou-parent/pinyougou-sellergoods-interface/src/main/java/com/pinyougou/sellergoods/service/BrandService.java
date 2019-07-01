@@ -1,6 +1,7 @@
 package com.pinyougou.sellergoods.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.pinyougou.pojo.TbBrand;
 
@@ -29,4 +30,7 @@ public interface BrandService {
 	
 	//条件分页查询 方法重载
 	public PageResult findPage(TbBrand tbBrand,int pageNum,int  pageSize);
+	
+	//添加品牌json格式的查询
+	public List<Map> selectOptionList();
 }

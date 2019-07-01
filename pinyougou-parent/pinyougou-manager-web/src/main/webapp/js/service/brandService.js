@@ -28,4 +28,9 @@
     	this.search=function(page,rows,searchEntity){
     		return $http.post('../brand/search.do?page='+page+'&size='+rows,searchEntity);
     	}
+    	//定义下拉列表的数据
+    	this.selectOptionList=function(){
+    		return $http.get('../brand/selectOptionList.do');
+    	}
+    	
     });
