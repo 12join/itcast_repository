@@ -34,7 +34,7 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 	//保存 
 	$scope.save=function(){				
 		var serviceObject;//服务层对象  				
-		if($scope.entity.id!=null){//如果有ID
+		if($scope.entity.specification.id!=null){//如果有ID
 			serviceObject=specificationService.update( $scope.entity ); //修改  
 		}else{
 			serviceObject=specificationService.add( $scope.entity  );//增加 
@@ -77,11 +77,16 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 		);
 	}
 	//定义变量初始化,不能为空
-	$scope.entity={specificationController:[]};
+	//$scope.entity={specificationController:[]};
 	//定义添加选项的规格选项
 	$scope.addtableRows=function(){
 		//把行作为整体添加
 		$scope.entity.specificationController.push({});
+	}
+	
+	//定义删除的方法
+	$scope.deleteTableRows=function(index){
+		$scope.entity.specificationController.splice(index,1);
 	}
     
 });	

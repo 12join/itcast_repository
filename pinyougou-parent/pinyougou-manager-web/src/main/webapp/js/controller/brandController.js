@@ -42,7 +42,7 @@
     		   object.success(
     				   function(response) {
 						//判断是否成功
-						if(response.sccess){
+						if(response.success){
 							$scope.reloadList();//重新加载
 						}else {
 						alert(response.message);
@@ -72,7 +72,7 @@
             	brandService.delete($scope.selectIds).success(
                            function(response) {
                             //判断是否成功
-                            if(response.sccess){
+                            if(response.success){
                                 $scope.reloadList();//重新加载
                             }else {
                             alert(response.message);

@@ -4,24 +4,24 @@ import java.io.Serializable;
 //结果集的封装
 public class Result implements Serializable{
 		//操作是否成功
-	private Boolean sccess;
+	private Boolean success;
 	
 	//信息的提示
 	private String message;
 	
 
-	public Result(Boolean sccess, String message) {
+	public Result(Boolean success, String message) {
 		super();
-		this.sccess = sccess;
+		this.success = success;
 		this.message = message;
 	}
 
-	public Boolean getSccess() {
-		return sccess;
+	public Boolean getSuccess() {
+		return success;
 	}
 
-	public void setSccess(Boolean sccess) {
-		this.sccess = sccess;
+	public void setSuccess(Boolean success) {
+		this.success = success;
 	}
 
 	public String getMessage() {
@@ -31,6 +31,8 @@ public class Result implements Serializable{
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	
+	
 	
 	
 }
