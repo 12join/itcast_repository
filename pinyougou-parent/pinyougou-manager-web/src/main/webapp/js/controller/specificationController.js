@@ -53,16 +53,26 @@ app.controller('specificationController' ,function($scope,$controller   ,specifi
 	
 	 
 	//批量删除 
-	$scope.dele=function(){			
+	$scope.dele=function(){	
+		if($scope.selectIds.length==0){
+			alert("请确认输入你要删除的商品");
+			return false;
+		}
 		//获取选中的复选框			
-		specificationService.dele( $scope.selectIds ).success(
-			function(response){
-				if(response.success){
-					$scope.reloadList();//刷新列表
-					$scope.selectIds=[];
-				}						
-			}		
-		);				
+		if(confirm("确定删除选中的商品")){
+			specificationService.dele($scope.selectIds).success(
+                       function(response) {
+                        //判断是否成功
+                        if(response.success){
+                            $scope.reloadList();//重新加载
+                        }else {
+                        alert(response.message);
+                        }  
+                    }   
+               );
+        }else {
+        	$scope.reloadList();//重新加载
+		}   		
 	}
 	
 	$scope.searchEntity={};//定义搜索对象 
